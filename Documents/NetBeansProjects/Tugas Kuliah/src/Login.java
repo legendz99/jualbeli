@@ -3,7 +3,6 @@ import java.awt.event.KeyEvent;
 import koneksi.conn;
 import java.sql.*;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,9 +17,7 @@ import javax.swing.JTextField;
 public class Login extends javax.swing.JFrame {
     int hitung = 0;
     
-    public JTextField txtuser(){
-        return this.txtusername;
-    }
+    
 
     /**
      * Creates new form Login
@@ -77,11 +74,6 @@ public class Login extends javax.swing.JFrame {
         btnlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnloginActionPerformed(evt);
-            }
-        });
-        btnlogin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnloginKeyPressed(evt);
             }
         });
 
@@ -164,6 +156,7 @@ public class Login extends javax.swing.JFrame {
     public void masuk(){
     try {
         MenuUtama mUtama = new MenuUtama();
+        TransaksiPembelian tPembelian = new TransaksiPembelian();
             Connection c = conn.getKoneksi();
             Statement s = c.createStatement();
             String sql = "select * from tbluser where nama_user='"+txtusername.getText()+"' and pwd_user='"+String.valueOf(txtpassword.getText())+"'";
@@ -172,6 +165,7 @@ public class Login extends javax.swing.JFrame {
                 if(txtusername.getText().equalsIgnoreCase(res.getString("nama_user")) && txtpassword.getText().equals(res.getString("pwd_user"))){
                     //Jika username & password benar
                     mUtama.setVisible(true);
+                    mUtama.txtkodeuser().setText(res.getString("kode_user"));
                     mUtama.txtnamauser().setText(res.getString("nama_user"));
                     mUtama.txtstatususer().setText(res.getString("status_user"));
                     
@@ -226,10 +220,6 @@ public class Login extends javax.swing.JFrame {
                 btnlogin.requestFocus();
             }
     }//GEN-LAST:event_txtpasswordKeyPressed
-
-    private void btnloginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnloginKeyPressed
-            masuk();           
-    }//GEN-LAST:event_btnloginKeyPressed
 
     /**
      * @param args the command line arguments

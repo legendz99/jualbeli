@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FakturPenjualan" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e482c02f-b3c2-473f-b2f4-4098f49c21fd">
+	<property name="ireport.zoom" value="1.363636363636369"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="namacustomer" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     TBLBarang.`Kode_Barang` AS TBLBarang_Kode_Barang,
+     TBLBarang.`Nama_Barang` AS TBLBarang_Nama_Barang,
+     TBLProfil.`Nama` AS TBLProfil_Nama,
+     TBLProfil.`Alamat` AS TBLProfil_Alamat,
+     TBLProfil.`Telepon` AS TBLProfil_Telepon,
+     TBLProfil.`Fax` AS TBLProfil_Fax,
+     TBLProfil.`Email` AS TBLProfil_Email,
+     TBLProfil.`WebSite` AS TBLProfil_WebSite,
+     TBLDetailJual.`Faktur_Jual` AS TBLDetailJual_Faktur_Jual,
+     TBLDetailJual.`Kode_Barang` AS TBLDetailJual_Kode_Barang,
+     TBLDetailJual.`Harga_JL` AS TBLDetailJual_Harga_JL,
+     TBLDetailJual.`Qty_Jual` AS TBLDetailJual_Qty_Jual,
+     TBLDetailJual.`SubTotal_Jual` AS TBLDetailJual_SubTotal_Jual,
+     TBLDetailJual.`Ket_Jual` AS TBLDetailJual_Ket_Jual,
+     TBLPenjualan.`Faktur_Jual` AS TBLPenjualan_Faktur_Jual,
+     TBLPenjualan.`Tgl_Jual` AS TBLPenjualan_Tgl_Jual,
+     TBLPenjualan.`Total_Jual` AS TBLPenjualan_Total_Jual,
+     TBLPenjualan.`Bayar_Jual` AS TBLPenjualan_Bayar_Jual,
+     TBLPenjualan.`Kembali_Jual` AS TBLPenjualan_Kembali_Jual,
+     TBLPenjualan.`Cara_Jual` AS TBLPenjualan_Cara_Jual,
+     TBLPenjualan.`Sisa_Piutang` AS TBLPenjualan_Sisa_Piutang,
+     TBLPenjualan.`Jth_Tempo_Jual` AS TBLPenjualan_Jth_Tempo_Jual,
+     TBLPenjualan.`Status_Jual` AS TBLPenjualan_Status_Jual,
+     TBLPenjualan.`Kode_Customer` AS TBLPenjualan_Kode_Customer,
+     TBLPenjualan.`Kode_User` AS TBLPenjualan_Kode_User,
+     TBLCustomer.`Kode_Customer` AS TBLCustomer_Kode_Customer,
+     TBLCustomer.`Nama_Customer` AS TBLCustomer_Nama_Customer,
+     TBLCustomer.`Alamat_Customer` AS TBLCustomer_Alamat_Customer,
+     TBLCustomer.`Person_Customer` AS TBLCustomer_Person_Customer
+FROM
+     `TBLCustomer` TBLCustomer INNER JOIN `TBLPenjualan` TBLPenjualan ON TBLCustomer.`Kode_Customer` = TBLPenjualan.`Kode_Customer`
+     INNER JOIN `TBLDetailJual` TBLDetailJual ON TBLPenjualan.`Faktur_Jual` = TBLDetailJual.`Faktur_Jual`
+     INNER JOIN `TBLBarang` TBLBarang ON TBLDetailJual.`Kode_Barang` = TBLBarang.`Kode_Barang`,
+     `TBLProfil` TBLProfil
+WHERE 
+TBLCustomer.`Nama_Customer` = $P{namacustomer}]]>
+	</queryString>
+	<field name="TBLBarang_Kode_Barang" class="java.lang.String"/>
+	<field name="TBLBarang_Nama_Barang" class="java.lang.String"/>
+	<field name="TBLProfil_Nama" class="java.lang.String"/>
+	<field name="TBLProfil_Alamat" class="java.lang.String"/>
+	<field name="TBLProfil_Telepon" class="java.lang.String"/>
+	<field name="TBLProfil_Fax" class="java.lang.String"/>
+	<field name="TBLProfil_Email" class="java.lang.String"/>
+	<field name="TBLProfil_WebSite" class="java.lang.String"/>
+	<field name="TBLDetailJual_Faktur_Jual" class="java.lang.String"/>
+	<field name="TBLDetailJual_Kode_Barang" class="java.lang.String"/>
+	<field name="TBLDetailJual_Harga_JL" class="java.lang.Integer"/>
+	<field name="TBLDetailJual_Qty_Jual" class="java.lang.Integer"/>
+	<field name="TBLDetailJual_SubTotal_Jual" class="java.lang.Integer"/>
+	<field name="TBLDetailJual_Ket_Jual" class="java.lang.String"/>
+	<field name="TBLPenjualan_Faktur_Jual" class="java.lang.String"/>
+	<field name="TBLPenjualan_Tgl_Jual" class="java.sql.Timestamp"/>
+	<field name="TBLPenjualan_Total_Jual" class="java.lang.Integer"/>
+	<field name="TBLPenjualan_Bayar_Jual" class="java.lang.Integer"/>
+	<field name="TBLPenjualan_Kembali_Jual" class="java.lang.Integer"/>
+	<field name="TBLPenjualan_Cara_Jual" class="java.lang.String"/>
+	<field name="TBLPenjualan_Sisa_Piutang" class="java.lang.Integer"/>
+	<field name="TBLPenjualan_Jth_Tempo_Jual" class="java.sql.Timestamp"/>
+	<field name="TBLPenjualan_Status_Jual" class="java.lang.String"/>
+	<field name="TBLPenjualan_Kode_Customer" class="java.lang.String"/>
+	<field name="TBLPenjualan_Kode_User" class="java.lang.String"/>
+	<field name="TBLCustomer_Kode_Customer" class="java.lang.String"/>
+	<field name="TBLCustomer_Nama_Customer" class="java.lang.String"/>
+	<field name="TBLCustomer_Alamat_Customer" class="java.lang.String"/>
+	<field name="TBLCustomer_Person_Customer" class="java.lang.String"/>
+	<variable name="TBLDetailJual_Qty_Jual_1" class="java.lang.Integer" resetType="Group" resetGroup="Faktur" calculation="Sum">
+		<variableExpression><![CDATA[$F{TBLDetailJual_Qty_Jual}]]></variableExpression>
+	</variable>
+	<variable name="TBLDetailJual_SubTotal_Jual_1" class="java.lang.Integer" resetType="Group" resetGroup="Faktur" calculation="Sum">
+		<variableExpression><![CDATA[$F{TBLDetailJual_SubTotal_Jual}]]></variableExpression>
+	</variable>
+	<group name="Faktur">
+		<groupExpression><![CDATA[$F{TBLPenjualan_Faktur_Jual}]]></groupExpression>
+		<groupHeader>
+			<band height="68">
+				<line>
+					<reportElement x="348" y="53" width="1" height="14" uuid="4e47117d-6c13-49b9-a9f3-31dd546ffc2b"/>
+				</line>
+				<staticText>
+					<reportElement x="26" y="19" width="90" height="14" uuid="4607d41e-6596-4247-9093-b84287a327ab"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Tanggal Jual]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="508" y="18" width="68" height="14" uuid="9aa8ce9e-3c5a-4d85-b9c7-57f5897eee28"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Status Jual]]></text>
+				</staticText>
+				<line>
+					<reportElement x="25" y="52" width="722" height="1" uuid="73291cfa-f31d-41e0-91c9-d86b1e094231"/>
+				</line>
+				<staticText>
+					<reportElement x="26" y="33" width="90" height="14" uuid="1b8b4119-3bc8-48b6-bc27-c970ee76a96f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Jatuh Tempo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="348" y="54" width="160" height="13" uuid="977e9353-5b12-4a6b-a0f2-700c83f05e53"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Harga]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="603" y="54" width="145" height="13" uuid="dd080d01-9e83-4df9-8c4e-732b6a1ce7e6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<line>
+					<reportElement x="602" y="53" width="1" height="15" uuid="58b8f1ba-8550-42e1-a74e-6292227a220b"/>
+				</line>
+				<line>
+					<reportElement x="25" y="53" width="1" height="14" uuid="058470c1-bfce-44fd-b222-52b010f6579a"/>
+				</line>
+				<staticText>
+					<reportElement x="508" y="4" width="68" height="14" uuid="ac6c4a82-10bb-4b48-bdc2-1d13f1418e40"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Cara Jual]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="26" y="54" width="323" height="13" uuid="f02dd1cb-81a6-4e00-aa50-47898805da76"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Nama Barang]]></text>
+				</staticText>
+				<line>
+					<reportElement x="25" y="67" width="722" height="1" uuid="3bab4c6e-6ac7-4120-bfea-895c72794cec"/>
+				</line>
+				<staticText>
+					<reportElement x="508" y="53" width="95" height="14" uuid="87860c42-1e9b-499d-8a98-9a85f678ab1b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Jumlah]]></text>
+				</staticText>
+				<line>
+					<reportElement x="507" y="52" width="1" height="15" uuid="5ccdeb63-d81e-472e-bcc5-fa05619a7943"/>
+				</line>
+				<staticText>
+					<reportElement x="26" y="5" width="90" height="14" uuid="745182f3-2fa4-48a3-91af-2175b1bbd777"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[No. Faktur]]></text>
+				</staticText>
+				<line>
+					<reportElement x="747" y="53" width="1" height="14" uuid="7ebb4ade-0509-482a-bae8-f75bf7556de4"/>
+				</line>
+				<textField>
+					<reportElement x="135" y="5" width="102" height="14" uuid="3f9926ae-de0f-4ef7-b59b-dcea8eae957d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TBLPenjualan_Faktur_Jual}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd MMMMM yyyy">
+					<reportElement x="135" y="18" width="102" height="14" uuid="9df157fb-a897-49f3-b65f-49d3b503cc60"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TBLPenjualan_Tgl_Jual}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="135" y="33" width="102" height="14" uuid="40ebb8f4-2cf7-40f5-baa8-254012417f4d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TBLPenjualan_Jth_Tempo_Jual}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="618" y="5" width="100" height="14" uuid="53f43f74-541a-4d86-85bf-4d674fe060fd"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TBLPenjualan_Cara_Jual}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="618" y="19" width="100" height="14" uuid="104baeeb-073e-4443-8758-826635b6527c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TBLPenjualan_Status_Jual}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="74">
+				<staticText>
+					<reportElement x="506" y="8" width="97" height="15" uuid="9a593f2c-d549-4d0c-9c27-a2a705fd2712"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Total Jumlah]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="506" y="23" width="97" height="15" uuid="30ab2b64-189d-46d4-a197-3369383b8d55"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Total Harga]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="506" y="38" width="97" height="15" uuid="9a265972-e234-43ee-a792-95ca64abf3d6"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[Sisa Piutang]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="602" y="8" width="145" height="15" uuid="0098be48-5d11-4d55-993b-928777bcc0ce"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TBLDetailJual_Qty_Jual_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="      Rp #,##0" isBlankWhenNull="false">
+					<reportElement x="602" y="23" width="145" height="15" uuid="61a77058-4fe5-42c3-a7f0-339f69ec209e"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TBLDetailJual_SubTotal_Jual_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="      Rp #,##0">
+					<reportElement x="603" y="38" width="145" height="15" uuid="29c7dd92-c604-49d2-8f74-678168462d1c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TBLPenjualan_Sisa_Piutang}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="4" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="94" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="0" width="132" height="15" uuid="ad63f0b1-492d-44ec-b657-2e799c10c3c9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="15" width="231" height="15" uuid="d1b2ac78-52de-40a2-bb5b-e41ca65c1dd7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="30" width="132" height="15" uuid="4c21b129-8a5c-4ef5-bad1-5f79c2538127"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Telepon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="45" width="132" height="15" uuid="26b94b52-5fa1-42a2-8112-ee1fbe698bc2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Fax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="60" width="231" height="15" uuid="913414b6-9ea4-4ff8-beb4-811b3ada1e3b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="74" width="231" height="15" uuid="20c0c230-cf9d-4553-90ee-dd31ed1bf6a5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_WebSite}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="24" y="11" width="90" height="14" uuid="610b1e36-aa05-4e80-92e8-ad30e9b41917"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nama Customer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="508" y="11" width="90" height="14" uuid="664c1dff-f521-443c-853b-eb076cc003e6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Alamat Customer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="25" width="90" height="14" uuid="6dbbba95-69a7-4eae-9367-48e2b1cbc274"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Contact Person]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="11" width="186" height="14" uuid="82a8efa5-2c54-460d-8b3f-9cc6030a1a8d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLCustomer_Nama_Customer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="25" width="142" height="14" uuid="cea0efb5-c31b-4cc3-ad63-a528f0ae7913"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLCustomer_Person_Customer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="618" y="11" width="129" height="14" uuid="63e77c5c-90e1-4fb2-8aed-923de36a57d4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLCustomer_Alamat_Customer}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="25" y="15" width="722" height="1" uuid="efd0fc04-d9d1-45ed-ac2d-8e649adc1a95"/>
+			</line>
+			<line>
+				<reportElement x="602" y="-1" width="1" height="17" uuid="1e117589-2047-43af-a586-656952629652"/>
+			</line>
+			<line>
+				<reportElement x="747" y="0" width="1" height="15" uuid="c0a7548d-d8c7-4f81-bafe-79ed6f0d77a6"/>
+			</line>
+			<line>
+				<reportElement x="507" y="0" width="1" height="16" uuid="385b8937-fcc3-4146-bebc-66d1d2d35938"/>
+			</line>
+			<line>
+				<reportElement x="348" y="0" width="1" height="15" uuid="2186ce3a-cf74-4b0a-9d4d-beec8a5f6d16"/>
+			</line>
+			<line>
+				<reportElement x="25" y="0" width="1" height="15" uuid="f17aca35-2de4-485c-aab0-6d92fa82eafe"/>
+			</line>
+			<textField>
+				<reportElement x="39" y="0" width="310" height="16" uuid="98d60fa3-8f58-4a68-83a5-9d948df59803"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLBarang_Nama_Barang}]]></textFieldExpression>
+			</textField>
+			<textField pattern="      Rp #,##0">
+				<reportElement x="349" y="0" width="159" height="16" uuid="3cffc452-37f0-4651-ae40-efe979b59d8e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLDetailJual_Harga_JL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="508" y="-1" width="95" height="16" uuid="4b48ef30-01a4-45f5-b03b-18ee51a69383"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLDetailJual_Qty_Jual}]]></textFieldExpression>
+			</textField>
+			<textField pattern="      Rp #,##0">
+				<reportElement x="603" y="0" width="145" height="16" uuid="fbc50467-4893-4d20-a094-3802ff159f84"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLDetailJual_SubTotal_Jual}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="2" splitType="Stretch"/>
+	</summary>
+</jasperReport>

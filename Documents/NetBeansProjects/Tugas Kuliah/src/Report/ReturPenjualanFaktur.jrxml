@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FakturPenjualan" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e482c02f-b3c2-473f-b2f4-4098f49c21fd">
+	<property name="ireport.zoom" value="1.2396694214876056"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nofakturretur" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     TBLBarang.`Kode_Barang` AS TBLBarang_Kode_Barang,
+     TBLBarang.`Nama_Barang` AS TBLBarang_Nama_Barang,
+     TBLProfil.`Nama` AS TBLProfil_Nama,
+     TBLProfil.`Alamat` AS TBLProfil_Alamat,
+     TBLProfil.`Telepon` AS TBLProfil_Telepon,
+     TBLProfil.`Fax` AS TBLProfil_Fax,
+     TBLProfil.`Email` AS TBLProfil_Email,
+     TBLProfil.`WebSite` AS TBLProfil_WebSite,
+     TBLPenjualan.`Faktur_Jual` AS TBLPenjualan_Faktur_Jual,
+     TBLPenjualan.`Tgl_Jual` AS TBLPenjualan_Tgl_Jual,
+     TBLPenjualan.`Item_Jual` AS TBLPenjualan_Item_Jual,
+     TBLPenjualan.`Total_Jual` AS TBLPenjualan_Total_Jual,
+     TBLPenjualan.`Bayar_Jual` AS TBLPenjualan_Bayar_Jual,
+     TBLPenjualan.`Kembali_Jual` AS TBLPenjualan_Kembali_Jual,
+     TBLPenjualan.`Cara_Jual` AS TBLPenjualan_Cara_Jual,
+     TBLPenjualan.`Sisa_Piutang` AS TBLPenjualan_Sisa_Piutang,
+     TBLPenjualan.`Jth_Tempo_Jual` AS TBLPenjualan_Jth_Tempo_Jual,
+     TBLPenjualan.`Status_Jual` AS TBLPenjualan_Status_Jual,
+     TBLPenjualan.`Kode_Customer` AS TBLPenjualan_Kode_Customer,
+     TBLPenjualan.`Kode_User` AS TBLPenjualan_Kode_User,
+     TBLCustomer.`Kode_Customer` AS TBLCustomer_Kode_Customer,
+     TBLCustomer.`Nama_Customer` AS TBLCustomer_Nama_Customer,
+     TBLCustomer.`Alamat_Customer` AS TBLCustomer_Alamat_Customer,
+     TBLCustomer.`Telepon_Customer` AS TBLCustomer_Telepon_Customer,
+     TBLCustomer.`Fax_Customer` AS TBLCustomer_Fax_Customer,
+     TBLCustomer.`Email_Customer` AS TBLCustomer_Email_Customer,
+     TBLCustomer.`Person_Customer` AS TBLCustomer_Person_Customer,
+     TBLReturPenjualan.`No_Retur_Jual` AS TBLReturPenjualan_No_Retur_Jual,
+     TBLReturPenjualan.`Tgl_Retur_Jual` AS TBLReturPenjualan_Tgl_Retur_Jual,
+     TBLReturPenjualan.`Faktur_Jual` AS TBLReturPenjualan_Faktur_Jual,
+     TBLReturPenjualan.`Item_Retur_Jual` AS TBLReturPenjualan_Item_Retur_Jual,
+     TBLReturPenjualan.`Kode_User` AS TBLReturPenjualan_Kode_User,
+     TBLDetailReturJual.`No_Retur_Jual` AS TBLDetailReturJual_No_Retur_Jual,
+     TBLDetailReturJual.`Kode_Barang` AS TBLDetailReturJual_Kode_Barang,
+     TBLDetailReturJual.`Qty_Retur_Jual` AS TBLDetailReturJual_Qty_Retur_Jual,
+     TBLDetailReturJual.`Alasan_Retur_Jual` AS TBLDetailReturJual_Alasan_Retur_Jual
+FROM
+     `TBLCustomer` TBLCustomer INNER JOIN `TBLPenjualan` TBLPenjualan ON TBLCustomer.`Kode_Customer` = TBLPenjualan.`Kode_Customer`
+     INNER JOIN `TBLReturPenjualan` TBLReturPenjualan ON TBLPenjualan.`Faktur_Jual` = TBLReturPenjualan.`Faktur_Jual`
+     INNER JOIN `TBLDetailReturJual` TBLDetailReturJual ON TBLReturPenjualan.`No_Retur_Jual` = TBLDetailReturJual.`No_Retur_Jual`
+     INNER JOIN `TBLBarang` TBLBarang ON TBLDetailReturJual.`Kode_Barang` = TBLBarang.`Kode_Barang`,
+     `TBLProfil` TBLProfil
+WHERE
+	TBLReturPenjualan.`No_Retur_Jual` = $P{nofakturretur}]]>
+	</queryString>
+	<field name="TBLBarang_Kode_Barang" class="java.lang.String"/>
+	<field name="TBLBarang_Nama_Barang" class="java.lang.String"/>
+	<field name="TBLProfil_Nama" class="java.lang.String"/>
+	<field name="TBLProfil_Alamat" class="java.lang.String"/>
+	<field name="TBLProfil_Telepon" class="java.lang.String"/>
+	<field name="TBLProfil_Fax" class="java.lang.String"/>
+	<field name="TBLProfil_Email" class="java.lang.String"/>
+	<field name="TBLProfil_WebSite" class="java.lang.String"/>
+	<field name="TBLPenjualan_Faktur_Jual" class="java.lang.String"/>
+	<field name="TBLPenjualan_Tgl_Jual" class="java.sql.Timestamp"/>
+	<field name="TBLPenjualan_Item_Jual" class="java.lang.Integer"/>
+	<field name="TBLPenjualan_Total_Jual" class="java.lang.Integer"/>
+	<field name="TBLPenjualan_Bayar_Jual" class="java.lang.Integer"/>
+	<field name="TBLPenjualan_Kembali_Jual" class="java.lang.Integer"/>
+	<field name="TBLPenjualan_Cara_Jual" class="java.lang.String"/>
+	<field name="TBLPenjualan_Sisa_Piutang" class="java.lang.Integer"/>
+	<field name="TBLPenjualan_Jth_Tempo_Jual" class="java.sql.Timestamp"/>
+	<field name="TBLPenjualan_Status_Jual" class="java.lang.String"/>
+	<field name="TBLPenjualan_Kode_Customer" class="java.lang.String"/>
+	<field name="TBLPenjualan_Kode_User" class="java.lang.String"/>
+	<field name="TBLCustomer_Kode_Customer" class="java.lang.String"/>
+	<field name="TBLCustomer_Nama_Customer" class="java.lang.String"/>
+	<field name="TBLCustomer_Alamat_Customer" class="java.lang.String"/>
+	<field name="TBLCustomer_Telepon_Customer" class="java.lang.String"/>
+	<field name="TBLCustomer_Fax_Customer" class="java.lang.String"/>
+	<field name="TBLCustomer_Email_Customer" class="java.lang.String"/>
+	<field name="TBLCustomer_Person_Customer" class="java.lang.String"/>
+	<field name="TBLReturPenjualan_No_Retur_Jual" class="java.lang.String"/>
+	<field name="TBLReturPenjualan_Tgl_Retur_Jual" class="java.sql.Timestamp"/>
+	<field name="TBLReturPenjualan_Faktur_Jual" class="java.lang.String"/>
+	<field name="TBLReturPenjualan_Item_Retur_Jual" class="java.lang.Integer"/>
+	<field name="TBLReturPenjualan_Kode_User" class="java.lang.String"/>
+	<field name="TBLDetailReturJual_No_Retur_Jual" class="java.lang.String"/>
+	<field name="TBLDetailReturJual_Kode_Barang" class="java.lang.String"/>
+	<field name="TBLDetailReturJual_Qty_Retur_Jual" class="java.lang.Integer"/>
+	<field name="TBLDetailReturJual_Alasan_Retur_Jual" class="java.lang.String"/>
+	<variable name="TBLDetailReturJual_Qty_Retur_Jual_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{TBLDetailReturJual_Qty_Retur_Jual}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="4" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="91" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="0" width="132" height="15" uuid="ad63f0b1-492d-44ec-b657-2e799c10c3c9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="15" width="231" height="15" uuid="d1b2ac78-52de-40a2-bb5b-e41ca65c1dd7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="30" width="132" height="15" uuid="4c21b129-8a5c-4ef5-bad1-5f79c2538127"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Telepon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="45" width="132" height="15" uuid="26b94b52-5fa1-42a2-8112-ee1fbe698bc2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Fax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="60" width="231" height="15" uuid="913414b6-9ea4-4ff8-beb4-811b3ada1e3b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="74" width="231" height="15" uuid="20c0c230-cf9d-4553-90ee-dd31ed1bf6a5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_WebSite}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="10" width="90" height="14" uuid="745182f3-2fa4-48a3-91af-2175b1bbd777"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[No. Retur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="24" width="90" height="14" uuid="4607d41e-6596-4247-9093-b84287a327ab"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Tanggal Retur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="10" width="90" height="14" uuid="610b1e36-aa05-4e80-92e8-ad30e9b41917"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nama Customer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="24" width="90" height="14" uuid="664c1dff-f521-443c-853b-eb076cc003e6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Alamat Customer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="64" width="432" height="14" uuid="f02dd1cb-81a6-4e00-aa50-47898805da76"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="64" width="146" height="14" uuid="87860c42-1e9b-499d-8a98-9a85f678ab1b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Jumlah Retur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="602" y="64" width="145" height="14" uuid="dd080d01-9e83-4df9-8c4e-732b6a1ce7e6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Alasan]]></text>
+			</staticText>
+			<line>
+				<reportElement x="25" y="64" width="722" height="1" uuid="73291cfa-f31d-41e0-91c9-d86b1e094231"/>
+			</line>
+			<line>
+				<reportElement x="25" y="78" width="722" height="1" uuid="3bab4c6e-6ac7-4120-bfea-895c72794cec"/>
+			</line>
+			<line>
+				<reportElement x="25" y="65" width="1" height="13" uuid="058470c1-bfce-44fd-b222-52b010f6579a"/>
+			</line>
+			<line>
+				<reportElement x="456" y="65" width="1" height="13" uuid="5ccdeb63-d81e-472e-bcc5-fa05619a7943"/>
+			</line>
+			<line>
+				<reportElement x="602" y="65" width="1" height="13" uuid="58b8f1ba-8550-42e1-a74e-6292227a220b"/>
+			</line>
+			<line>
+				<reportElement x="747" y="65" width="1" height="14" uuid="7ebb4ade-0509-482a-bae8-f75bf7556de4"/>
+			</line>
+			<textField>
+				<reportElement x="130" y="10" width="114" height="14" uuid="6a1b0696-89e7-4f13-af20-0d597c912ff1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLReturPenjualan_No_Retur_Jual}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="130" y="24" width="114" height="14" uuid="5deb5ed3-157a-4030-b6f6-6150befacef5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLReturPenjualan_Tgl_Retur_Jual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="10" width="233" height="14" uuid="e006ba8e-c0a8-42c7-9af3-78c85d8c6d43"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLCustomer_Nama_Customer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="24" width="233" height="14" uuid="740c72ce-4f48-4551-8e1a-aa290d2ace1d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLCustomer_Alamat_Customer}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="25" y="15" width="722" height="1" uuid="efd0fc04-d9d1-45ed-ac2d-8e649adc1a95"/>
+			</line>
+			<line>
+				<reportElement x="602" y="0" width="1" height="16" uuid="1e117589-2047-43af-a586-656952629652"/>
+			</line>
+			<line>
+				<reportElement x="747" y="0" width="1" height="15" uuid="c0a7548d-d8c7-4f81-bafe-79ed6f0d77a6"/>
+			</line>
+			<line>
+				<reportElement x="456" y="0" width="1" height="15" uuid="385b8937-fcc3-4146-bebc-66d1d2d35938"/>
+			</line>
+			<line>
+				<reportElement x="25" y="-1" width="1" height="16" uuid="f17aca35-2de4-485c-aab0-6d92fa82eafe"/>
+			</line>
+			<textField>
+				<reportElement x="42" y="-1" width="415" height="17" uuid="fadb4bfd-91ae-4f51-9d8c-473aab29b022"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLBarang_Nama_Barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="-1" width="147" height="16" uuid="e0a4b9ee-a94f-43cc-9139-15b2cd292613"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLDetailReturJual_Qty_Retur_Jual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="603" y="-1" width="145" height="17" uuid="eb2b7143-2c8f-4171-b613-d56b19a79584"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLDetailReturJual_Alasan_Retur_Jual}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="52">
+			<staticText>
+				<reportElement x="506" y="5" width="95" height="15" uuid="50cc3094-5b08-4c07-9855-d8d46ae7f09e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Total Jumlah]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="617" y="5" width="131" height="15" uuid="7adbdb98-bdcf-4311-be9c-11692f027896"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TBLDetailReturJual_Qty_Retur_Jual_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="185" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>

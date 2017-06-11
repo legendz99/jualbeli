@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FakturPenjualan" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e482c02f-b3c2-473f-b2f4-4098f49c21fd">
+	<property name="ireport.zoom" value="0.9313819845887432"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tglreturbeli" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tglreturbeliawal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tglreturbeliakhir" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     TBLPembelian.`Faktur_Beli` AS TBLPembelian_Faktur_Beli,
+     TBLPembelian.`Tgl_Beli` AS TBLPembelian_Tgl_Beli,
+     TBLPembelian.`Item_Beli` AS TBLPembelian_Item_Beli,
+     TBLPembelian.`Total_Beli` AS TBLPembelian_Total_Beli,
+     TBLPembelian.`Bayar_Beli` AS TBLPembelian_Bayar_Beli,
+     TBLPembelian.`Cara_Beli` AS TBLPembelian_Cara_Beli,
+     TBLPembelian.`Sisa_Hutang` AS TBLPembelian_Sisa_Hutang,
+     TBLPembelian.`Tempo_Hari` AS TBLPembelian_Tempo_Hari,
+     TBLPembelian.`Jth_Tempo_Beli` AS TBLPembelian_Jth_Tempo_Beli,
+     TBLPembelian.`Status_Beli` AS TBLPembelian_Status_Beli,
+     TBLPembelian.`Kode_Supplier` AS TBLPembelian_Kode_Supplier,
+     TBLPembelian.`Kode_User` AS TBLPembelian_Kode_User,
+     TBLSupplier.`Kode_Supplier` AS TBLSupplier_Kode_Supplier,
+     TBLSupplier.`Nama_Supplier` AS TBLSupplier_Nama_Supplier,
+     TBLSupplier.`Alamat_Supplier` AS TBLSupplier_Alamat_Supplier,
+     TBLSupplier.`Telepon_Supplier` AS TBLSupplier_Telepon_Supplier,
+     TBLSupplier.`Fax_Supplier` AS TBLSupplier_Fax_Supplier,
+     TBLSupplier.`Email_Supplier` AS TBLSupplier_Email_Supplier,
+     TBLSupplier.`Person_Supplier` AS TBLSupplier_Person_Supplier,
+     TBLProfil.`Nama` AS TBLProfil_Nama,
+     TBLProfil.`Alamat` AS TBLProfil_Alamat,
+     TBLProfil.`Telepon` AS TBLProfil_Telepon,
+     TBLProfil.`Fax` AS TBLProfil_Fax,
+     TBLProfil.`Email` AS TBLProfil_Email,
+     TBLProfil.`WebSite` AS TBLProfil_WebSite,
+     TBLReturPembelian.`No_Retur_Beli` AS TBLReturPembelian_No_Retur_Beli,
+     TBLReturPembelian.`Tgl_Retur_Beli` AS TBLReturPembelian_Tgl_Retur_Beli,
+     TBLReturPembelian.`Faktur_Beli` AS TBLReturPembelian_Faktur_Beli,
+     TBLReturPembelian.`Item_Retur_Beli` AS TBLReturPembelian_Item_Retur_Beli,
+     TBLReturPembelian.`Kode_User` AS TBLReturPembelian_Kode_User
+FROM
+     `TBLSupplier` TBLSupplier INNER JOIN `TBLPembelian` TBLPembelian ON TBLSupplier.`Kode_Supplier` = TBLPembelian.`Kode_Supplier`
+     INNER JOIN `TBLReturPembelian` TBLReturPembelian ON TBLPembelian.`Faktur_Beli` = TBLReturPembelian.`Faktur_Beli`,
+     `TBLProfil` TBLProfil
+WHERE
+	(TBLReturPembelian.`Tgl_Retur_Beli`=$P{tglreturbeli}) OR
+	(TBLReturPembelian.`Tgl_Retur_Beli` BETWEEN $P{tglreturbeliawal}AND$P{tglreturbeliakhir})
+ORDER BY
+	TBLReturPembelian.`No_Retur_Beli` ASC	]]>
+	</queryString>
+	<field name="TBLPembelian_Faktur_Beli" class="java.lang.String"/>
+	<field name="TBLPembelian_Tgl_Beli" class="java.sql.Timestamp"/>
+	<field name="TBLPembelian_Item_Beli" class="java.lang.Integer"/>
+	<field name="TBLPembelian_Total_Beli" class="java.lang.Integer"/>
+	<field name="TBLPembelian_Bayar_Beli" class="java.lang.Integer"/>
+	<field name="TBLPembelian_Cara_Beli" class="java.lang.String"/>
+	<field name="TBLPembelian_Sisa_Hutang" class="java.lang.Integer"/>
+	<field name="TBLPembelian_Tempo_Hari" class="java.lang.Integer"/>
+	<field name="TBLPembelian_Jth_Tempo_Beli" class="java.sql.Timestamp"/>
+	<field name="TBLPembelian_Status_Beli" class="java.lang.String"/>
+	<field name="TBLPembelian_Kode_Supplier" class="java.lang.String"/>
+	<field name="TBLPembelian_Kode_User" class="java.lang.String"/>
+	<field name="TBLSupplier_Kode_Supplier" class="java.lang.String"/>
+	<field name="TBLSupplier_Nama_Supplier" class="java.lang.String"/>
+	<field name="TBLSupplier_Alamat_Supplier" class="java.lang.String"/>
+	<field name="TBLSupplier_Telepon_Supplier" class="java.lang.String"/>
+	<field name="TBLSupplier_Fax_Supplier" class="java.lang.String"/>
+	<field name="TBLSupplier_Email_Supplier" class="java.lang.String"/>
+	<field name="TBLSupplier_Person_Supplier" class="java.lang.String"/>
+	<field name="TBLProfil_Nama" class="java.lang.String"/>
+	<field name="TBLProfil_Alamat" class="java.lang.String"/>
+	<field name="TBLProfil_Telepon" class="java.lang.String"/>
+	<field name="TBLProfil_Fax" class="java.lang.String"/>
+	<field name="TBLProfil_Email" class="java.lang.String"/>
+	<field name="TBLProfil_WebSite" class="java.lang.String"/>
+	<field name="TBLReturPembelian_No_Retur_Beli" class="java.lang.String"/>
+	<field name="TBLReturPembelian_Tgl_Retur_Beli" class="java.sql.Timestamp"/>
+	<field name="TBLReturPembelian_Faktur_Beli" class="java.lang.String"/>
+	<field name="TBLReturPembelian_Item_Retur_Beli" class="java.lang.Integer"/>
+	<field name="TBLReturPembelian_Kode_User" class="java.lang.String"/>
+	<sortField name="TBLPembelian_Tgl_Beli"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="4" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="124" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="0" width="132" height="15" uuid="ad63f0b1-492d-44ec-b657-2e799c10c3c9"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="15" width="231" height="15" uuid="d1b2ac78-52de-40a2-bb5b-e41ca65c1dd7"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="30" width="132" height="15" uuid="4c21b129-8a5c-4ef5-bad1-5f79c2538127"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Telepon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="45" width="132" height="15" uuid="26b94b52-5fa1-42a2-8112-ee1fbe698bc2"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Fax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="60" width="231" height="15" uuid="913414b6-9ea4-4ff8-beb4-811b3ada1e3b"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="74" width="231" height="15" uuid="20c0c230-cf9d-4553-90ee-dd31ed1bf6a5"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_WebSite}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="8" width="100" height="15" uuid="f02dd1cb-81a6-4e00-aa50-47898805da76"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[No Retur]]></text>
+			</staticText>
+			<line>
+				<reportElement x="25" y="8" width="777" height="1" uuid="73291cfa-f31d-41e0-91c9-d86b1e094231"/>
+			</line>
+			<line>
+				<reportElement x="25" y="22" width="777" height="1" uuid="3bab4c6e-6ac7-4120-bfea-895c72794cec"/>
+			</line>
+			<line>
+				<reportElement x="25" y="9" width="1" height="13" uuid="058470c1-bfce-44fd-b222-52b010f6579a"/>
+			</line>
+			<line>
+				<reportElement x="703" y="9" width="1" height="13" uuid="7ebb4ade-0509-482a-bae8-f75bf7556de4"/>
+			</line>
+			<staticText>
+				<reportElement x="127" y="8" width="107" height="15" uuid="0f7f378c-9805-426a-bc3b-a146991d04c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Tanggal Retur]]></text>
+			</staticText>
+			<line>
+				<reportElement x="126" y="9" width="1" height="13" uuid="2339f2d4-b12c-486c-a0e9-861e376c8e26"/>
+			</line>
+			<line>
+				<reportElement x="233" y="9" width="1" height="13" uuid="88ddc054-06ce-4ea0-a1fd-0f94dc35c3b0"/>
+			</line>
+			<staticText>
+				<reportElement x="233" y="8" width="115" height="15" uuid="a7f461f4-3842-436f-bb4e-9cdb473541df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nomor Beli]]></text>
+			</staticText>
+			<line>
+				<reportElement x="347" y="9" width="1" height="13" uuid="57cc13e7-011f-4c21-ba33-baad45e56309"/>
+			</line>
+			<staticText>
+				<reportElement x="347" y="8" width="119" height="15" uuid="cc8e49cd-2f7f-4deb-813b-209ad15dedca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Tanggal Beli]]></text>
+			</staticText>
+			<line>
+				<reportElement x="465" y="9" width="1" height="13" uuid="2186ce3a-cf74-4b0a-9d4d-beec8a5f6d16"/>
+			</line>
+			<staticText>
+				<reportElement x="465" y="9" width="135" height="14" uuid="ecaffc56-108e-4c10-af3e-cf48175c3c1e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nama Supplier]]></text>
+			</staticText>
+			<line>
+				<reportElement x="599" y="9" width="1" height="13" uuid="58b8f1ba-8550-42e1-a74e-6292227a220b"/>
+			</line>
+			<staticText>
+				<reportElement x="599" y="9" width="105" height="13" uuid="6dc0adf6-ded0-4d83-a142-22dcced114c4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Contact Person]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="703" y="9" width="99" height="13" uuid="3d812db3-a9f7-45be-94dd-8437ecec15b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Jumlah Retur]]></text>
+			</staticText>
+			<line>
+				<reportElement x="801" y="9" width="1" height="13" uuid="c0a7548d-d8c7-4f81-bafe-79ed6f0d77a6"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="25" y="15" width="777" height="1" uuid="efd0fc04-d9d1-45ed-ac2d-8e649adc1a95"/>
+			</line>
+			<line>
+				<reportElement x="25" y="-1" width="1" height="16" uuid="f17aca35-2de4-485c-aab0-6d92fa82eafe"/>
+			</line>
+			<line>
+				<reportElement x="126" y="-1" width="1" height="16" uuid="d95aadef-d26b-49ab-9a76-23ade9e6f353"/>
+			</line>
+			<line>
+				<reportElement x="233" y="-1" width="1" height="16" uuid="11012bd4-b112-4abd-98d4-906c5ac55e44"/>
+			</line>
+			<line>
+				<reportElement x="347" y="0" width="1" height="15" uuid="bdaea859-27eb-42d5-af60-b2e6d23459ef"/>
+			</line>
+			<line>
+				<reportElement x="465" y="0" width="1" height="15" uuid="a4d4a51c-396a-4378-be79-9c5c204d2aa6"/>
+			</line>
+			<line>
+				<reportElement x="599" y="-1" width="1" height="16" uuid="45439064-ba05-4dd7-9106-0c234b1161da"/>
+			</line>
+			<line>
+				<reportElement x="703" y="0" width="1" height="15" uuid="11a4316e-1efd-4845-88ac-9fcab0ae40df"/>
+			</line>
+			<line>
+				<reportElement x="801" y="0" width="1" height="15" uuid="57d72fbe-b2b6-4169-aca2-bb9e2c52fa8b"/>
+			</line>
+			<textField>
+				<reportElement x="25" y="0" width="102" height="15" uuid="a0e2507c-1606-443b-a5d7-ff7882403ff9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLReturPembelian_No_Retur_Beli}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="126" y="-1" width="108" height="17" uuid="e04564f3-f10a-4af4-a82f-9c0d878691e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLReturPembelian_Tgl_Retur_Beli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="233" y="-1" width="115" height="17" uuid="ef698440-04de-44a3-8b04-3d7210cb2df3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLPembelian_Faktur_Beli}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="347" y="-1" width="119" height="17" uuid="ca6250d5-098b-4b27-b3ac-83ad337a645b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLPembelian_Tgl_Beli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="-1" width="135" height="17" uuid="84ef971f-2330-4ff5-a928-1183af3d2ffa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLSupplier_Nama_Supplier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="599" y="-1" width="105" height="17" uuid="ce5cc99a-5c60-4b1a-a912-96e3706d1846"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLSupplier_Person_Supplier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="704" y="-1" width="98" height="16" uuid="8c3a2e79-d047-48ad-bbd8-69d0f47b5133"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLReturPembelian_Item_Retur_Beli}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="52"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="185" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>

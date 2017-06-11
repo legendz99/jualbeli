@@ -36,7 +36,7 @@
 
         <target name="-post-compile">
             <obfuscate>
-                <fileset dir="${build.classes.dir}"/>
+                <fileset dir="${build.classes.dir}"/>  
             </obfuscate>
         </target>
 
@@ -70,4 +70,15 @@
     nbproject/build-impl.xml file. 
 
     -->
+	<target name="-post-compile">
+            <copy todir="${dist.dir}/src/Database">
+			<fileset dir="${src.dir}/Database"/>
+			</copy>
+			<copy todir="${dist.dir}/src/Report">
+			<fileset dir="${src.dir}/Report"/>
+			</copy>
+			<copy todir="${dist.dir}/src/excel">
+			<fileset dir="${src.dir}/excel"/>
+			</copy>
+        </target>
 </project>

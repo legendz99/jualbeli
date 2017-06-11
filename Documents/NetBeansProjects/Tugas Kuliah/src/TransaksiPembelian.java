@@ -1,4 +1,3 @@
-
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,6 +27,8 @@ import koneksi.conn;
  */
 public class TransaksiPembelian extends javax.swing.JInternalFrame {
 
+    String TXTkode;
+
     /**
      * Creates new form TransaksiPembelian
      */
@@ -39,12 +40,12 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
         tampilsupplier();
         tampilbarang();
         
+        Date date = new Date();
+        dtptanggal.setDate(date);
   
     }
     
-    
 
-   
         
 
     public void tampilsupplier(){
@@ -95,7 +96,6 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
     }
     
     public void kosongkan(){
-        cbosupplier.removeAllItems();
         lbljumlahbarang.setText("");
         lbltotalharga.setText("");
         lblcarabeli.setText("");
@@ -104,7 +104,21 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
         lblstatusbeli.setText("");
         lblkodesupplier.setText("");
         txtdibayar.setText("");
-        txttempo.setText(title);
+        txttempo.setText("");
+        txtnofaktur.setText("");
+        txtnofaktur.requestFocus();
+    }
+    
+     public void hitungtransaksi(){
+        int x = 0;
+        int y = 0;
+        
+        for(int baris = 0; baris <= dgv.getRowCount()-1; baris++){
+            x = x + (Integer.parseInt(dgv.getValueAt(baris, 3).toString()));
+            y = y + (Integer.parseInt(dgv.getValueAt(baris, 4).toString()));      
+            lbljumlahbarang.setText(Integer.toString(x));
+            lbltotalharga.setText(Integer.toString(y));
+                }          
     }
 
     /**
@@ -167,13 +181,13 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(100, 20));
 
         txtnofaktur.setPreferredSize(new java.awt.Dimension(100, 20));
-        txtnofaktur.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtnofakturKeyPressed(evt);
+        txtnofaktur.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtnofakturFocusLost(evt);
             }
         });
 
-        dtptanggal.setDateFormatString("MM/dd/yyyy");
+        dtptanggal.setDateFormatString("dd/MM/yyyy");
         dtptanggal.setPreferredSize(new java.awt.Dimension(100, 20));
 
         jLabel3.setText("Supplier / Toko");
@@ -184,6 +198,11 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
 
         cbosupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbosupplier.setMinimumSize(new java.awt.Dimension(206, 20));
+        cbosupplier.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cbosupplierFocusLost(evt);
+            }
+        });
 
         lbljumlahbarang.setPreferredSize(new java.awt.Dimension(100, 20));
 
@@ -300,6 +319,11 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
         dgv.setEditingColumn(0);
         dgv.setEditingRow(0);
         dgv.setPreferredSize(new java.awt.Dimension(648, 235));
+        dgv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                dgvKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(dgv);
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(219, 239));
@@ -540,13 +564,15 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtcaridataKeyPressed
 
     private void dgvbarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dgvbarangMouseClicked
-       Object header[]={"Kode Barang","Nama Barang","Harga Beli","Jumlah","Total"};
+        Object header[]={"Kode Barang","Nama Barang","Harga Beli","Jumlah","Total"};
         DefaultTableModel data = (DefaultTableModel) dgv.getModel();
         dgv.setModel(data);
         data.setRowCount(dgv.getRowCount()+1);
+
         int baris = dgv.getRowCount()-1;
         int rowbarang = dgvbarang.rowAtPoint(evt.getPoint());
         int row = dgv.getRowCount();
+
         String kode_barang = dgvbarang.getValueAt(rowbarang, 0).toString();
         String nama_barang = dgvbarang.getValueAt(rowbarang, 1).toString();
         String harga_beli = dgvbarang.getValueAt(rowbarang, 2).toString();
@@ -561,7 +587,7 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
 
         int barisatas;
 
-        //hitungtransaksi();
+        hitungtransaksi();
 
         for (barisatas=0; barisatas <= dgv.getRowCount() -1 ;barisatas++){
             int barisbawah;
@@ -601,86 +627,141 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtdibayarKeyPressed
 
     private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
-        kosongkan();
         DefaultTableModel model = (DefaultTableModel)dgv.getModel();
-
-    while (model.getRowCount() > 0){
-        for (int i = 0; i < model.getRowCount(); ++i){
-            model.removeRow(i);
+        while (model.getRowCount() > 0){
+            for (int i = 0; i < model.getRowCount(); ++i){
+                model.removeRow(i);
+            }
         }
-    }
+        kosongkan();
     }//GEN-LAST:event_btnbatalActionPerformed
 
     private void txttempoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttempoKeyPressed
        if (evt.getKeyChar() == KeyEvent.VK_ENTER){
             Login login = new Login();
             MenuUtama mUtama = new MenuUtama();
-           //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-           // int tambahhari = Integer.parseInt(txttempo.getText());
-           // Date tgl = dtptanggal.getDate();
+           SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            int tambahhari = Integer.parseInt(txttempo.getText());
+            Date tgl = dtptanggal.getDate();
            
-          // Calendar calTambah = Calendar.getInstance();
-          // calTambah.setTime(tgl);
-          // calTambah.add(Calendar.DAY_OF_MONTH, tambahhari);
+           Calendar calTambah = Calendar.getInstance();
+           calTambah.setTime(tgl);
+           calTambah.add(Calendar.DAY_OF_MONTH, tambahhari);
 
-            lbljatuhtempo.setText(mUtama.TXTkode);
+            lbljatuhtempo.setText(sdf.format(calTambah.getTime()));
        }
     }//GEN-LAST:event_txttempoKeyPressed
 
     private void btnsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsimpanActionPerformed
+        if (txtnofaktur.getText().equals("") || cbosupplier.getSelectedItem().toString().equals("") 
+                || txtdibayar.getText().equals("") || txttempo.getText().equals("") || lbljumlahbarang.getText().equals("")
+                || lbltotalharga.getText().equals("") || lblkodesupplier.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Transaksi Belum Lengkap");
+        }else{
+        
         try{
-            MenuUtama mUtama = new MenuUtama();
+            Connection c = conn.getKoneksi();
+            Statement s = c.createStatement();
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date dtp = dtptanggal.getDate();
-            
-                    Timestamp dtptgl = new Timestamp(sdf.parse(sdf.format(dtp)).getTime());
-                    Timestamp jatuhtempo = new Timestamp (sdf.parse(lbljatuhtempo.getText()).getTime());
+            Timestamp dtptgl = new Timestamp(sdf.parse(sdf.format(dtp)).getTime());
 
-                Connection c = conn.getKoneksi();
-                Statement s = c.createStatement();
-                String sql = "select * from tblpembelian where faktur_beli= '"+txtnofaktur.getText()+"'";
-                ResultSet res = s.executeQuery(sql);
-                if(res.next()){
-                    JOptionPane.showMessageDialog(null, "Nomor Transaksi Sudah Terdaftar");
-                }
-                
-                String simpan1  = "insert into tblpembelian values('" +txtnofaktur.getText()+ "','"+dtptgl+"','"+lbljumlahbarang.getText()+"','"+lbltotalharga.getText()+"','"+txtdibayar.getText()+
-                        "','"+lblcarabeli.getText()+"','"+lblsisahutang.getText()+"','"+txttempo.getText()+"','"+jatuhtempo+
-                        "','"+lblstatusbeli.getText()+"','"+lblkodesupplier.getText()+"','"+mUtama.txtkodeuser().getText()+"')";
-                    res = s.executeQuery(simpan1);
+            Date jatuh = sdf.parse(lbljatuhtempo.getText());
+            Timestamp jatuhtempo = new Timestamp (sdf.parse(sdf.format(jatuh)).getTime());
+
+                String simpan1  = "insert into tblpembelian values(?,?,?,?,?,?,?,?,?,?,?,?)";
+                    PreparedStatement ps = c.prepareStatement(simpan1);
+                    ps.setString(1, txtnofaktur.getText());
+                    ps.setTimestamp(2, dtptgl);
+                    ps.setInt(3, Integer.parseInt(lbljumlahbarang.getText()));
+                    ps.setInt(4, Integer.parseInt(lbltotalharga.getText()));
+                    ps.setInt(5, Integer.parseInt(txtdibayar.getText()));
+                    ps.setString(6, lblcarabeli.getText());
+                    ps.setInt(7, Integer.parseInt(lblsisahutang.getText()));
+                    ps.setInt(8, Integer.parseInt(txttempo.getText()));
+                    ps.setTimestamp(9, jatuhtempo);
+                    ps.setString(10, lblstatusbeli.getText());
+                    ps.setString(11, lblkodesupplier.getText());
+                    ps.setString(12, TXTkode);
+                    ps.executeUpdate();
                     
+                                        
                 if(lblcarabeli.getText() == "TUNAI"){
-                    String simpanjurnal1  = "insert into tbljurnal values('" +txtnofaktur.getText()+ "','"+dtptanggal.getDate().toString()+
-                            "','102','PEMBELIAN TUNAI KE"+cbosupplier.getSelectedItem().toString().toUpperCase()+"','"+lbltotalharga.getText()+"',0)";
+                    String simpanjurnal1  = "insert into tbljurnal values(?,?,?,?,?,?)";
+                    ps = c.prepareStatement(simpanjurnal1);
+                    ps.setString(1, txtnofaktur.getText());
+                    ps.setTimestamp(2, dtptgl);
+                    ps.setString(3, "102");
+                    ps.setString(4, "PEMBELIAN TUNAI KE "+cbosupplier.getSelectedItem().toString());
+                    ps.setInt(5, Integer.parseInt(lbltotalharga.getText()));
+                    ps.setInt(6, 0);
+
+                    ps.executeUpdate();
                     
-                    
-                    String simpanjurnal2  = "insert into tbljurnal values('" +txtnofaktur.getText()+ "','"+dtptanggal.getDate().toString()+
-                            "','100','KAS PEMBELIAN TUNAI KE"+cbosupplier.getSelectedItem().toString().toUpperCase()+"',0,'"+lbltotalharga.getText()+"',)";
+                    String simpanjurnal2  = "insert into tbljurnal values(?,?,?,?,?,?)";
+                    ps = c.prepareStatement(simpanjurnal2);
+                    ps.setString(1, txtnofaktur.getText());
+                    ps.setTimestamp(2, dtptgl);
+                    ps.setString(3, "100");
+                    ps.setString(4, "KAS TUNAI PEMBELIAN KE "+cbosupplier.getSelectedItem().toString());
+                    ps.setInt(5, 0);
+                    ps.setInt(6, Integer.parseInt(lbltotalharga.getText()));
+
+                    ps.executeUpdate();
                     
                 }else{
-                    String simpanjurnal3  = "insert into tbljurnal values('" +txtnofaktur.getText()+ "','"+dtptanggal.getDate().toString()+
-                            "','102','PEMBELIAN KREDIT KE"+cbosupplier.getSelectedItem().toString().toUpperCase()+"','"+lbltotalharga.getText()+"',0)";
+                    String simpanjurnal3  = "insert into tbljurnal values(?,?,?,?,?,?)";
+                    ps = c.prepareStatement(simpanjurnal3);
+                    ps.setString(1, txtnofaktur.getText());
+                    ps.setTimestamp(2, dtptgl);
+                    ps.setString(3, "102");
+                    ps.setString(4, "PEMBELIAN KREDIT KE "+cbosupplier.getSelectedItem().toString());
+                    ps.setInt(5, Integer.parseInt(lbltotalharga.getText()));
+                    ps.setInt(6, 0);
+
+                    ps.executeUpdate();
                     
-                    
-                    String simpanjurnal4  = "insert into tblbarang values('" +txtnofaktur.getText()+ "','"+dtptanggal.getDate().toString()+
-                            "','100','KAS PEMBELIAN KREDIT KE"+cbosupplier.getSelectedItem().toString().toUpperCase()+"',0,'"+lbltotalharga.getText()+"',)";
+                    String simpanjurnal4  = "insert into tbljurnal values(?,?,?,?,?,?)";
+                    ps = c.prepareStatement(simpanjurnal4);
+                    ps.setString(1, txtnofaktur.getText());
+                    ps.setTimestamp(2, dtptgl);
+                    ps.setString(3, "100");
+                    ps.setString(4, "KAS PEMBELIAN KREDIT KE "+cbosupplier.getSelectedItem().toString());
+                    ps.setInt(5, 0);
+                    ps.setInt(6, Integer.parseInt(lbltotalharga.getText()));
                    
+                    ps.executeUpdate();
                     
-                    String simpanjurnal5  = "insert into tbljurnal values('" +txtnofaktur.getText()+ "','"+dtptanggal.getDate().toString()+
-                            "','200','HUTANG PEMBELIAN KREDIT KE"+cbosupplier.getSelectedItem().toString().toUpperCase()+"',0,'"+lbltotalharga.getText()+"',)";
-                    
+                    String simpanjurnal5  = "insert into tbljurnal values(?,?,?,?,?,?)";
+                    ps = c.prepareStatement(simpanjurnal5);
+                    ps.setString(1, txtnofaktur.getText());
+                    ps.setTimestamp(2, dtptgl);
+                    ps.setString(3, "200");
+                    ps.setString(4, "HUTANG PEMBELIAN KREDIT KE "+cbosupplier.getSelectedItem().toString());
+                    ps.setInt(5, 0);
+                    ps.setInt(6, Integer.parseInt(lbltotalharga.getText()));
+
+                    ps.executeUpdate();
+                
                 }
                 int baris;
-                for(baris = 0; baris <= dgv.getRowCount()-2; baris++){
-                String simpan2  = "insert into tbldetailbeli values('" +txtnofaktur.getText()+ "','"+dgv.getValueAt(baris, 0)+
-                            "','"+dgv.getValueAt(baris, 2)+"','"+dgv.getValueAt(baris, 3)+"','"+dgv.getValueAt(baris, 4)+"','-')";
-                    
-                    
+                for(baris = 0; baris <= dgv.getRowCount()-1; baris++){
+                String simpan2  = "insert into tbldetailbeli values(?,?,?,?,?,?)";
+                ps = c.prepareStatement(simpan2);
+                ps.setString(1, txtnofaktur.getText());
+                ps.setString(2, dgv.getValueAt(baris, 0).toString());
+                ps.setInt(3, Integer.parseInt(dgv.getValueAt(baris, 2).toString()));
+                ps.setInt(4, Integer.parseInt(dgv.getValueAt(baris, 3).toString()));
+                ps.setInt(5, Integer.parseInt(dgv.getValueAt(baris, 4).toString()));
+                ps.setString(6, "-");
+                ps.executeUpdate(); 
+ 
                 String tblbarang = "select * from tblbarang where kode_barang= '"+dgv.getValueAt(baris, 0)+"'";
-                
+                ResultSet res = s.executeQuery(tblbarang);
                 if(res.next()){
-                    String tambahstok = "update tblbarang set stok = '"+(res.getString("stok")+dgv.getValueAt(baris, 3))+"'where kode_barang = '"+dgv.getValueAt(baris, 0)+"'";
-                
+                    String tambahstok = "update tblbarang set stok = '"+(Integer.parseInt(res.getString("stok"))+Integer.parseInt(dgv.getValueAt(baris, 3).toString()))+"'where kode_barang = '"+dgv.getValueAt(baris, 0)+"'";
+                ps = c.prepareStatement(tambahstok);
+                    ps.execute();
                 }
 
             }               
@@ -692,6 +773,7 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
             Logger.getLogger(TransaksiPembelian.class.getName()).log(Level.SEVERE, null, ex);
         }
             kosongkan();
+            txtnofaktur.setText("");
         DefaultTableModel model = (DefaultTableModel)dgv.getModel();
 
     while (model.getRowCount() > 0){
@@ -699,39 +781,52 @@ public class TransaksiPembelian extends javax.swing.JInternalFrame {
             model.removeRow(i);
         }
     }
+        }
     }//GEN-LAST:event_btnsimpanActionPerformed
 
-    private void txtnofakturKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnofakturKeyPressed
-       if (evt.getKeyChar() == KeyEvent.VK_ENTER){
-           try{
+    private void txtnofakturFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtnofakturFocusLost
+        try{
                 Connection c = conn.getKoneksi();
                 Statement s = c.createStatement();
                 String sql = "select * from tblpembelian where faktur_beli= '"+txtnofaktur.getText()+"'";
                 ResultSet res = s.executeQuery(sql);
                 if(res.next()){
-                    JOptionPane.showMessageDialog(null, "Nomor Transaksi Sudah Terdaftar");
-                }else{
-                    cbosupplier.requestFocus();
+                JOptionPane.showMessageDialog(null, "Nomor Transaksi Sudah Terdaftar");
+                txtnofaktur.setText("");
+                txtnofaktur.requestFocus();
                 }
-                
             }catch(SQLException e) {
             JOptionPane.showMessageDialog(rootPane, e);
                 
             }
-    }
-    }//GEN-LAST:event_txtnofakturKeyPressed
+    }//GEN-LAST:event_txtnofakturFocusLost
 
-    public void hitungtransaksi(){
-        int x = 0;
-        int y = 0;
-        
-        for(int baris = 0; baris <= dgv.getRowCount()-1; baris++){
-            x = x + (Integer.parseInt(dgv.getValueAt(baris, 3).toString()));
-            y = y + (Integer.parseInt(dgv.getValueAt(baris, 4).toString()));      
-            lbljumlahbarang.setText(Integer.toString(x));
-            lbltotalharga.setText(Integer.toString(y));
-                }          
-    }
+    private void cbosupplierFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbosupplierFocusLost
+        try{
+              Connection c = conn.getKoneksi();
+              Statement s = c.createStatement();
+              String sql = "select * from tblsupplier where nama_supplier= '"+cbosupplier.getSelectedItem().toString()+"'";
+              ResultSet res = s.executeQuery(sql);
+              if(res.next()){
+                  lblkodesupplier.setText(res.getString("kode_supplier"));
+              }
+        }catch(SQLException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+                
+            }
+    }//GEN-LAST:event_cbosupplierFocusLost
+
+    private void dgvKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dgvKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_DELETE){
+                 DefaultTableModel data = (DefaultTableModel) dgv.getModel();
+        dgv.setModel(data);
+        data.setRowCount(dgv.getRowCount());
+        data.removeRow(dgv.getSelectedRow());
+        evt.setKeyCode(KeyEvent.VK_DOWN);
+            }
+    }//GEN-LAST:event_dgvKeyPressed
+
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbatal;

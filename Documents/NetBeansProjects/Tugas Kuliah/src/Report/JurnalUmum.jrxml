@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FakturPenjualan" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e482c02f-b3c2-473f-b2f4-4098f49c21fd">
+	<property name="ireport.zoom" value="1.0245201830476167"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tgltrans" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tgltransawal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tgltransakhir" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     TBLProfil.`Nama` AS TBLProfil_Nama,
+     TBLProfil.`Alamat` AS TBLProfil_Alamat,
+     TBLProfil.`Telepon` AS TBLProfil_Telepon,
+     TBLProfil.`Fax` AS TBLProfil_Fax,
+     TBLProfil.`Email` AS TBLProfil_Email,
+     TBLProfil.`WebSite` AS TBLProfil_WebSite,
+     TBLJurnal.`Nomor_Transaksi` AS TBLJurnal_Nomor_Transaksi,
+     TBLJurnal.`Tgl_Transaksi` AS TBLJurnal_Tgl_Transaksi,
+     TBLJurnal.`Kode_Perkiraan` AS TBLJurnal_Kode_Perkiraan,
+     TBLJurnal.`Uraian` AS TBLJurnal_Uraian,
+     TBLJurnal.`Debet` AS TBLJurnal_Debet,
+     TBLJurnal.`Kredit` AS TBLJurnal_Kredit
+FROM
+     `TBLProfil` TBLProfil,
+     `TBLJurnal` TBLJurnal
+WHERE
+     (TBLJurnal.`Tgl_Transaksi` = $P{tgltrans})
+  OR (TBLJurnal.`Tgl_Transaksi` BETWEEN $P{tgltransawal}AND$P{tgltransakhir})]]>
+	</queryString>
+	<field name="TBLProfil_Nama" class="java.lang.String"/>
+	<field name="TBLProfil_Alamat" class="java.lang.String"/>
+	<field name="TBLProfil_Telepon" class="java.lang.String"/>
+	<field name="TBLProfil_Fax" class="java.lang.String"/>
+	<field name="TBLProfil_Email" class="java.lang.String"/>
+	<field name="TBLProfil_WebSite" class="java.lang.String"/>
+	<field name="TBLJurnal_Nomor_Transaksi" class="java.lang.String"/>
+	<field name="TBLJurnal_Tgl_Transaksi" class="java.sql.Timestamp"/>
+	<field name="TBLJurnal_Kode_Perkiraan" class="java.lang.String"/>
+	<field name="TBLJurnal_Uraian" class="java.lang.String"/>
+	<field name="TBLJurnal_Debet" class="java.lang.Integer"/>
+	<field name="TBLJurnal_Kredit" class="java.lang.Integer"/>
+	<variable name="TBLJurnal_Debet_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{TBLJurnal_Debet}]]></variableExpression>
+	</variable>
+	<variable name="TBLJurnal_Kredit_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{TBLJurnal_Kredit}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="4" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="124" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="0" width="132" height="15" uuid="ad63f0b1-492d-44ec-b657-2e799c10c3c9"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="15" width="231" height="15" uuid="d1b2ac78-52de-40a2-bb5b-e41ca65c1dd7"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="30" width="132" height="15" uuid="4c21b129-8a5c-4ef5-bad1-5f79c2538127"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Telepon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="45" width="132" height="15" uuid="26b94b52-5fa1-42a2-8112-ee1fbe698bc2"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Fax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="60" width="231" height="15" uuid="913414b6-9ea4-4ff8-beb4-811b3ada1e3b"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_Email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="74" width="231" height="15" uuid="20c0c230-cf9d-4553-90ee-dd31ed1bf6a5"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLProfil_WebSite}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="8" width="107" height="15" uuid="f02dd1cb-81a6-4e00-aa50-47898805da76"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[No Transaksi]]></text>
+			</staticText>
+			<line>
+				<reportElement x="25" y="8" width="777" height="1" uuid="73291cfa-f31d-41e0-91c9-d86b1e094231"/>
+			</line>
+			<line>
+				<reportElement x="25" y="22" width="777" height="1" uuid="3bab4c6e-6ac7-4120-bfea-895c72794cec"/>
+			</line>
+			<line>
+				<reportElement x="25" y="9" width="1" height="13" uuid="058470c1-bfce-44fd-b222-52b010f6579a"/>
+			</line>
+			<line>
+				<reportElement x="674" y="8" width="1" height="15" uuid="7ebb4ade-0509-482a-bae8-f75bf7556de4"/>
+			</line>
+			<staticText>
+				<reportElement x="131" y="8" width="125" height="15" uuid="0f7f378c-9805-426a-bc3b-a146991d04c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<line>
+				<reportElement x="131" y="9" width="1" height="13" uuid="2339f2d4-b12c-486c-a0e9-861e376c8e26"/>
+			</line>
+			<line>
+				<reportElement x="256" y="9" width="1" height="13" uuid="88ddc054-06ce-4ea0-a1fd-0f94dc35c3b0"/>
+			</line>
+			<staticText>
+				<reportElement x="256" y="9" width="82" height="14" uuid="a7f461f4-3842-436f-bb4e-9cdb473541df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Kode Perkiraan]]></text>
+			</staticText>
+			<line>
+				<reportElement x="337" y="8" width="1" height="15" uuid="2186ce3a-cf74-4b0a-9d4d-beec8a5f6d16"/>
+			</line>
+			<staticText>
+				<reportElement x="338" y="8" width="206" height="15" uuid="5d591be5-d90a-432c-be35-caf7c156f67c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Uraian]]></text>
+			</staticText>
+			<line>
+				<reportElement x="544" y="9" width="1" height="13" uuid="5ccdeb63-d81e-472e-bcc5-fa05619a7943"/>
+			</line>
+			<staticText>
+				<reportElement x="544" y="8" width="131" height="15" uuid="ecaffc56-108e-4c10-af3e-cf48175c3c1e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Debet]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="674" y="8" width="127" height="15" uuid="3d812db3-a9f7-45be-94dd-8437ecec15b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Kredit]]></text>
+			</staticText>
+			<line>
+				<reportElement x="801" y="9" width="1" height="13" uuid="c0a7548d-d8c7-4f81-bafe-79ed6f0d77a6"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="25" y="15" width="777" height="1" uuid="efd0fc04-d9d1-45ed-ac2d-8e649adc1a95"/>
+			</line>
+			<line>
+				<reportElement x="25" y="0" width="1" height="15" uuid="f17aca35-2de4-485c-aab0-6d92fa82eafe"/>
+			</line>
+			<line>
+				<reportElement x="131" y="-1" width="1" height="17" uuid="1b4d390a-0c16-4ac1-93af-4c178e643a6f"/>
+			</line>
+			<line>
+				<reportElement x="256" y="0" width="1" height="15" uuid="11012bd4-b112-4abd-98d4-906c5ac55e44"/>
+			</line>
+			<line>
+				<reportElement x="337" y="-1" width="1" height="17" uuid="a4d4a51c-396a-4378-be79-9c5c204d2aa6"/>
+			</line>
+			<line>
+				<reportElement x="544" y="0" width="1" height="15" uuid="96ed9771-c7d3-451a-bd04-dfef54bcbfa0"/>
+			</line>
+			<line>
+				<reportElement x="674" y="0" width="1" height="16" uuid="11a4316e-1efd-4845-88ac-9fcab0ae40df"/>
+			</line>
+			<line>
+				<reportElement x="801" y="0" width="1" height="15" uuid="57d72fbe-b2b6-4169-aca2-bb9e2c52fa8b"/>
+			</line>
+			<textField>
+				<reportElement x="25" y="-1" width="118" height="17" uuid="8dfd21ed-e916-4752-8401-06c8fd2f3bcc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLJurnal_Nomor_Transaksi}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="131" y="-1" width="126" height="17" uuid="13320da4-70cf-4743-a4bf-d6acd9a20abf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLJurnal_Tgl_Transaksi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="-1" width="208" height="17" uuid="bdc36ae0-e993-402d-97c1-dbe36e39cc92"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLJurnal_Uraian}]]></textFieldExpression>
+			</textField>
+			<textField pattern="      Rp #,##0">
+				<reportElement x="544" y="0" width="131" height="16" uuid="562d5c72-3d91-4060-ad6e-d288bb9f81aa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLJurnal_Debet}]]></textFieldExpression>
+			</textField>
+			<textField pattern="      Rp #,##0">
+				<reportElement x="674" y="-1" width="128" height="17" uuid="5adb0359-dc53-46f5-b81f-2f681eed9025"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLJurnal_Kredit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="0" width="81" height="16" uuid="4b643216-a258-4d64-af2d-acf448014714"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLJurnal_Kode_Perkiraan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="52">
+			<textField pattern="Rp #,##0">
+				<reportElement x="543" y="16" width="131" height="21" uuid="d96d1270-4d51-4c00-938b-5f44ac504ec6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TBLJurnal_Debet_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="674" y="16" width="126" height="21" uuid="9fd0eed6-c6aa-4c7e-acf2-3ca8424e3d86"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TBLJurnal_Kredit_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="185" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

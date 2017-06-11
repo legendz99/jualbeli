@@ -1,5 +1,3 @@
-
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -198,18 +196,6 @@ public class MasterBarang extends javax.swing.JInternalFrame {
             }
         });
 
-        txthargabeli.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txthargabeliKeyPressed(evt);
-            }
-        });
-
-        txtstok.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtstokKeyPressed(evt);
-            }
-        });
-
         cbosatuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel6.setText("Jenis Barang");
@@ -221,11 +207,6 @@ public class MasterBarang extends javax.swing.JInternalFrame {
         txthargajual.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txthargajualFocusLost(evt);
-            }
-        });
-        txthargajual.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txthargajualKeyPressed(evt);
             }
         });
 
@@ -419,24 +400,6 @@ public class MasterBarang extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txthargabeliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthargabeliKeyPressed
-        char c = evt.getKeyChar();
-        if (((Character.isDigit(c) && (c == KeyEvent.VK_DELETE)))) {
-            evt.consume();}
-    }//GEN-LAST:event_txthargabeliKeyPressed
-
-    private void txthargajualKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthargajualKeyPressed
-        char c = evt.getKeyChar();
-        if (((Character.isDigit(c) && (c == KeyEvent.VK_DELETE)))) {
-            evt.consume();}
-    }//GEN-LAST:event_txthargajualKeyPressed
-
-    private void txtstokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstokKeyPressed
-        char c = evt.getKeyChar();
-        if (((Character.isDigit(c) && (c == KeyEvent.VK_DELETE)))) {
-            evt.consume();}
-    }//GEN-LAST:event_txtstokKeyPressed
 
     private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
         kosongkan();

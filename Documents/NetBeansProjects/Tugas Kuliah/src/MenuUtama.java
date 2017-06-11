@@ -1,15 +1,7 @@
 
 import java.awt.Dimension;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import koneksi.conn;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -45,7 +37,6 @@ public class MenuUtama extends javax.swing.JFrame {
      */
     public MenuUtama() {
         initComponents();
-        msk();
             
     }
 
@@ -71,16 +62,18 @@ public class MenuUtama extends javax.swing.JFrame {
         btncustomer = new javax.swing.JMenuItem();
         btnprofil = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        btntpembelian = new javax.swing.JMenuItem();
+        btnreturbeli = new javax.swing.JMenuItem();
+        btntpenjualan = new javax.swing.JMenuItem();
+        btnreturjual = new javax.swing.JMenuItem();
+        btnbyrutang = new javax.swing.JMenuItem();
+        btntrmpiutang = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        btnlkeuangan = new javax.swing.JMenuItem();
+        btnlpembelian = new javax.swing.JMenuItem();
+        btnlreturbeli = new javax.swing.JMenuItem();
+        btnlpenjualan = new javax.swing.JMenuItem();
+        btnlreturjual = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         btnlogoff = new javax.swing.JMenuItem();
         btnexit = new javax.swing.JMenuItem();
@@ -90,7 +83,6 @@ public class MenuUtama extends javax.swing.JFrame {
         setBackground(new java.awt.Color(51, 0, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setExtendedState(MAXIMIZED_BOTH);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setSize(new java.awt.Dimension(1280, 720));
 
         TXTkodeuser.setText("jLabel1");
@@ -174,50 +166,108 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jMenu2.setText("Transaksi");
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnpembelian.Image.png"))); // NOI18N
-        jMenuItem7.setText("Pembelian");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        btntpembelian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnpembelian.Image.png"))); // NOI18N
+        btntpembelian.setText("Pembelian");
+        btntpembelian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                btntpembelianActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem7);
+        jMenu2.add(btntpembelian);
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnreturbeli.Image.png"))); // NOI18N
-        jMenuItem8.setText("Retur Beli");
-        jMenu2.add(jMenuItem8);
+        btnreturbeli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnreturbeli.Image.png"))); // NOI18N
+        btnreturbeli.setText("Retur Beli");
+        btnreturbeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnreturbeliActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnreturbeli);
 
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnpenjualan.Image.png"))); // NOI18N
-        jMenuItem9.setText("Penjualan");
-        jMenu2.add(jMenuItem9);
+        btntpenjualan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnpenjualan.Image.png"))); // NOI18N
+        btntpenjualan.setText("Penjualan");
+        btntpenjualan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntpenjualanActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btntpenjualan);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnreturjual.Image.png"))); // NOI18N
-        jMenuItem10.setText("Retur Jual");
-        jMenu2.add(jMenuItem10);
+        btnreturjual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnreturjual.Image.png"))); // NOI18N
+        btnreturjual.setText("Retur Jual");
+        btnreturjual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnreturjualActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnreturjual);
+
+        btnbyrutang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnbayarutang.Image.png"))); // NOI18N
+        btnbyrutang.setText("Bayar Utang");
+        btnbyrutang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbyrutangActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnbyrutang);
+
+        btntrmpiutang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnterimapiutang.Image.png"))); // NOI18N
+        btntrmpiutang.setText("Terima Piutang");
+        btntrmpiutang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntrmpiutangActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btntrmpiutang);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Laporan");
 
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnlapmaster.Image.png"))); // NOI18N
-        jMenuItem11.setText("Master");
-        jMenu3.add(jMenuItem11);
+        btnlkeuangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnlapmaster.Image.png"))); // NOI18N
+        btnlkeuangan.setText("Keuangan");
+        btnlkeuangan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlkeuanganActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnlkeuangan);
 
-        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnlappembelian.Image.png"))); // NOI18N
-        jMenuItem12.setText("Pembelian");
-        jMenu3.add(jMenuItem12);
+        btnlpembelian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnlappembelian.Image.png"))); // NOI18N
+        btnlpembelian.setText("Pembelian");
+        btnlpembelian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlpembelianActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnlpembelian);
 
-        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnlapreturbeli.Image.png"))); // NOI18N
-        jMenuItem13.setText("Retur Beli");
-        jMenu3.add(jMenuItem13);
+        btnlreturbeli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnlapreturbeli.Image.png"))); // NOI18N
+        btnlreturbeli.setText("Retur Beli");
+        btnlreturbeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlreturbeliActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnlreturbeli);
 
-        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnlappenjualan.Image.png"))); // NOI18N
-        jMenuItem14.setText("Penjualan");
-        jMenu3.add(jMenuItem14);
+        btnlpenjualan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnlappenjualan.Image.png"))); // NOI18N
+        btnlpenjualan.setText("Penjualan");
+        btnlpenjualan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlpenjualanActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnlpenjualan);
 
-        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnlapreturjual.Image.png"))); // NOI18N
-        jMenuItem15.setText("Retur Jual");
-        jMenu3.add(jMenuItem15);
+        btnlreturjual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/MenuUtama/btnlapreturjual.Image.png"))); // NOI18N
+        btnlreturjual.setText("Retur Jual");
+        btnlreturjual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlreturjualActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnlreturjual);
 
         jMenuBar1.add(jMenu3);
 
@@ -274,18 +324,6 @@ public class MenuUtama extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void msk(){
-       try{
-        Login login = new Login();
-        Connection c = conn.getKoneksi();
-            Statement s = c.createStatement();
-            String sql = "select * from tbluser where nama_user='"+login.txtuser().getText()+"'";
-            ResultSet res = s.executeQuery(sql);
-        TXTkodeuser.setText(res.getString("kode_user"));}
-       catch (SQLException e) {
-            JOptionPane.showMessageDialog(rootPane, "Kesalahan Saat Mengakses Database : "+e);
-        }
-    }
     
     private void btnuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnuserActionPerformed
         MasterUser mUser = new MasterUser();
@@ -351,15 +389,121 @@ public class MenuUtama extends javax.swing.JFrame {
         mProfil.setLocation((desktopSize.width - mProfilSize.width)/2, (desktopSize.height - mProfilSize.height)/2);
     }//GEN-LAST:event_btnprofilActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void btntpembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntpembelianActionPerformed
         MenuUtama mUtama = new MenuUtama();
         TransaksiPembelian tPembelian = new TransaksiPembelian();
+        tPembelian.TXTkode = TXTkodeuser.getText();
         Dimension desktopSize = Desktop.getSize();
         Dimension tPembelianSize = tPembelian.getSize();
         Desktop.add(tPembelian);
         tPembelian.show();
         tPembelian.setLocation((desktopSize.width - tPembelianSize.width)/2, (desktopSize.height - tPembelianSize.height)/2);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_btntpembelianActionPerformed
+
+    private void btntpenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntpenjualanActionPerformed
+        MenuUtama mUtama = new MenuUtama();
+        TransaksiPenjualan tPenjualan = new TransaksiPenjualan();
+        tPenjualan.TXTkode = TXTkodeuser.getText();
+        Dimension desktopSize = Desktop.getSize();
+        Dimension tPenjualanSize = tPenjualan.getSize();
+        Desktop.add(tPenjualan);
+        tPenjualan.show();
+        tPenjualan.setLocation((desktopSize.width - tPenjualanSize.width)/2, (desktopSize.height - tPenjualanSize.height)/2);
+    }//GEN-LAST:event_btntpenjualanActionPerformed
+
+    private void btnreturbeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreturbeliActionPerformed
+         MenuUtama mUtama = new MenuUtama();
+        TransaksiReturPembelian tReturPembelian = new TransaksiReturPembelian();
+        tReturPembelian.TXTkode = TXTkodeuser.getText();
+        Dimension desktopSize = Desktop.getSize();
+        Dimension tReturPembelianSize = tReturPembelian.getSize();
+        Desktop.add(tReturPembelian);
+        tReturPembelian.show();
+        tReturPembelian.setLocation((desktopSize.width - tReturPembelianSize.width)/2, (desktopSize.height - tReturPembelianSize.height)/2);
+    }//GEN-LAST:event_btnreturbeliActionPerformed
+
+    private void btnreturjualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreturjualActionPerformed
+          MenuUtama mUtama = new MenuUtama();
+        TransaksiReturPenjualan tReturPenjualan = new TransaksiReturPenjualan();
+        tReturPenjualan.TXTkode = TXTkodeuser.getText();
+        Dimension desktopSize = Desktop.getSize();
+        Dimension tReturPenjualanSize = tReturPenjualan.getSize();
+        Desktop.add(tReturPenjualan);
+        tReturPenjualan.show();
+        tReturPenjualan.setLocation((desktopSize.width - tReturPenjualanSize.width)/2, (desktopSize.height - tReturPenjualanSize.height)/2);
+    }//GEN-LAST:event_btnreturjualActionPerformed
+
+    private void btnbyrutangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbyrutangActionPerformed
+         MenuUtama mUtama = new MenuUtama();
+        TransaksiBayarUtang tBayarUtang = new TransaksiBayarUtang();
+        tBayarUtang.TXTkode = TXTkodeuser.getText();
+        Dimension desktopSize = Desktop.getSize();
+        Dimension tBayarUtangSize = tBayarUtang.getSize();
+        Desktop.add(tBayarUtang);
+        tBayarUtang.show();
+        tBayarUtang.setLocation((desktopSize.width - tBayarUtangSize.width)/2, (desktopSize.height - tBayarUtangSize.height)/2);
+    }//GEN-LAST:event_btnbyrutangActionPerformed
+
+    private void btntrmpiutangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntrmpiutangActionPerformed
+        MenuUtama mUtama = new MenuUtama();
+        TransaksiTerimaPiutang tTerimaPiutang = new TransaksiTerimaPiutang();
+        tTerimaPiutang.TXTkode = TXTkodeuser.getText();
+        Dimension desktopSize = Desktop.getSize();
+        Dimension tTerimaPiutangSize = tTerimaPiutang.getSize();
+        Desktop.add(tTerimaPiutang);
+        tTerimaPiutang.show();
+        tTerimaPiutang.setLocation((desktopSize.width - tTerimaPiutangSize.width)/2, (desktopSize.height - tTerimaPiutangSize.height)/2);
+    }//GEN-LAST:event_btntrmpiutangActionPerformed
+
+    private void btnlpembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlpembelianActionPerformed
+         MenuUtama mUtama = new MenuUtama();
+        LaporanPembelian lPembelian = new LaporanPembelian();
+        Dimension desktopSize = Desktop.getSize();
+        Dimension lPembelianSize = lPembelian.getSize();
+        Desktop.add(lPembelian);
+        lPembelian.show();
+        lPembelian.setLocation((desktopSize.width - lPembelianSize.width)/2, (desktopSize.height - lPembelianSize.height)/2);
+    }//GEN-LAST:event_btnlpembelianActionPerformed
+
+    private void btnlpenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlpenjualanActionPerformed
+            MenuUtama mUtama = new MenuUtama();
+        LaporanPenjualan lPenjualan = new LaporanPenjualan();
+        Dimension desktopSize = Desktop.getSize();
+        Dimension lPenjualanSize = lPenjualan.getSize();
+        Desktop.add(lPenjualan);
+        lPenjualan.show();
+        lPenjualan.setLocation((desktopSize.width - lPenjualanSize.width)/2, (desktopSize.height - lPenjualanSize.height)/2);
+    }//GEN-LAST:event_btnlpenjualanActionPerformed
+
+    private void btnlreturbeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlreturbeliActionPerformed
+         MenuUtama mUtama = new MenuUtama();
+        LaporanReturPembelian lReturPembelian = new LaporanReturPembelian();
+        Dimension desktopSize = Desktop.getSize();
+        Dimension lReturPembelianSize = lReturPembelian.getSize();
+        Desktop.add(lReturPembelian);
+        lReturPembelian.show();
+        lReturPembelian.setLocation((desktopSize.width - lReturPembelianSize.width)/2, (desktopSize.height - lReturPembelianSize.height)/2);
+    }//GEN-LAST:event_btnlreturbeliActionPerformed
+
+    private void btnlreturjualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlreturjualActionPerformed
+        MenuUtama mUtama = new MenuUtama();
+        LaporanReturPenjualan lReturPenjualan = new LaporanReturPenjualan();
+        Dimension desktopSize = Desktop.getSize();
+        Dimension lReturPenjualanSize = lReturPenjualan.getSize();
+        Desktop.add(lReturPenjualan);
+        lReturPenjualan.show();
+        lReturPenjualan.setLocation((desktopSize.width - lReturPenjualanSize.width)/2, (desktopSize.height - lReturPenjualanSize.height)/2);
+    }//GEN-LAST:event_btnlreturjualActionPerformed
+
+    private void btnlkeuanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlkeuanganActionPerformed
+          MenuUtama mUtama = new MenuUtama();
+        LaporanKeuangan lKeuangan = new LaporanKeuangan();
+        Dimension desktopSize = Desktop.getSize();
+        Dimension lKeuanganSize = lKeuangan.getSize();
+        Desktop.add(lKeuangan);
+        lKeuangan.show();
+        lKeuangan.setLocation((desktopSize.width - lKeuanganSize.width)/2, (desktopSize.height - lKeuanganSize.height)/2);
+    }//GEN-LAST:event_btnlkeuanganActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,30 +544,29 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JLabel TXTnamauser;
     private javax.swing.JLabel TXTstatususer;
     private javax.swing.JMenuItem btnbarang;
+    private javax.swing.JMenuItem btnbyrutang;
     private javax.swing.JMenuItem btncustomer;
     private javax.swing.JMenuItem btnexit;
+    private javax.swing.JMenuItem btnlkeuangan;
     private javax.swing.JMenuItem btnlogoff;
+    private javax.swing.JMenuItem btnlpembelian;
+    private javax.swing.JMenuItem btnlpenjualan;
+    private javax.swing.JMenuItem btnlreturbeli;
+    private javax.swing.JMenuItem btnlreturjual;
     private javax.swing.JMenuItem btnperkiraan;
     private javax.swing.JMenuItem btnprofil;
+    private javax.swing.JMenuItem btnreturbeli;
+    private javax.swing.JMenuItem btnreturjual;
     private javax.swing.JMenuItem btnsupplier;
+    private javax.swing.JMenuItem btntpembelian;
+    private javax.swing.JMenuItem btntpenjualan;
+    private javax.swing.JMenuItem btntrmpiutang;
     private javax.swing.JMenuItem btnuser;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 
-    void txtkode(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
